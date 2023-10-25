@@ -1,0 +1,8 @@
+
+service mysql status
+
+service mysql start 
+
+mysql -u root -p 
+
+Senha:  123

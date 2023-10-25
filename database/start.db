@@ -1,0 +1,9 @@
+-- PostgreSQL 
+sudo service postgresql status
+sudo service postgresql start
+sudo -u postgres psql 
+
+-- MysqlSQL 
+sudo service mysql status
+sudo service mysql start
+sudo -u postgres psql 

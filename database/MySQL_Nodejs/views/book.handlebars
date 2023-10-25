@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="form">
+        
+        <h3 class="title-main">{{book.title}}</h3>
+        <p class="paragraph">Este litro tem {{book.pages}} paginas.</p>
+
+       
+        
+        <div class="button-area">
+
+            <div class="button">
+                <a href="/books/edit/{{book.id}}" class="btn">Editar</a>
+            </div>
+            
+
+            <form action="/books/remove/{{book.id}}" method="post" class="
+            button">
+                <input type="submit" value="Remover" class="btn">
+            </form>
+
+            <a href="/books" class="paragraph">Voltar</a>
+
+        </div>
+        
+
+    </div>
+    
+</div>

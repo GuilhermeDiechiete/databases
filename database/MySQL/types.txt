@@ -1,0 +1,36 @@
+
+
+NUMERICOS 
+
+    BIT(X)  1 a 64 caracteres
+    TINYINT(X) 1 a 255 caracteres
+    BOOL  0 é false e o resto é true
+    INT(X)  valores entre -2147483648 a 2147483647
+
+TIPOS DE DATA 
+
+    DATE: Aceita uma data no formato YYYY-MM-DD
+    DATETIME: Aceita uma data com horario no formato YYYY-MM-DD hh:mm:ss
+    TIMESTAP: Aceita uma data no formato de DATETIME, porem apenas entre anos 1970 a 2038;
+
+    ***** datas sao escritas entre aspas *****
+
+TIPOS DE TEXTOS 
+
+    CHAR(x) aceita textos com 0 a 255 caracteres
+    VARCHAR(x) aceita textos com 0 a 65535 caracteres
+    TINYTEXT aceita apenas texto com até 255 caracteres
+    MEDIUMTEXT aceita apenas texto com até 16777215 caracteres
+
+    cry 
+    wrong
+    movie
+    prison
+    ticket
+    tittle
+    mix 
+    noble
+    bufffalo
+    execute
+    final
+    forest

@@ -1,0 +1,16 @@
+<div class="container">
+        <div class="form">
+            <h3 class="title-main">Livros Registrados</h3>
+
+
+            {{#each books}}
+                <p class="paragraph">{{this.id}} - <a href="/books/{{this.id}}">{{this.title}}</a> - {{this.pages}} páginas.</p>
+            {{/each}}
+
+            <div class="button-area">
+                <a href="/" class="paragraph">Voltar</a>
+            </div>
+        </div>
+</div>
+
+
