@@ -1,7 +1,0 @@
-knex init -- inicia o knex no projeto e cria o arquivo knexfile.js na raiz do projeto
-
-knex migrate:make create_table_users -- cria a migração de tabela 
-
-knex migrate:latest -- faz a migração da tabela para o banco1
-
-knex migrate:rollback -- volta a ultima ação de criação de tabelas

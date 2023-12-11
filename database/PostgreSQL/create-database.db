@@ -1,4 +1,0 @@
-CREATE DATABASE nomeDoBanco;
-
-\c nomeDoBanco; -- seleciona o banco para utilizar
-\dt -- lista todos os bancos
