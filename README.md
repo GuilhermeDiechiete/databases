@@ -98,7 +98,7 @@ create table users(
 
 #### Insert Data
 
-´´´
+```
 INSERT INTO estados(nome, sigla, regiao, populacao) 
 VALUES ("Acre", "AC", "Norte", 0.83);
 ```
@@ -127,7 +127,7 @@ VALUES ("Guilherme", 2),
 ("Dhaniela", 1),
 ("Neusa", 3),
 ("Antonio", null);
-``
+```
 
 #### Consult Table
 
