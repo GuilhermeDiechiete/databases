@@ -95,4 +95,61 @@ create table users(
     UNIQUE KEY (email)
 );
 ```
+
+#### Insert Data
+
+´´´
+INSERT INTO estados(nome, sigla, regiao, populacao) 
+VALUES ("Acre", "AC", "Norte", 0.83);
+```
+
+```
+INSERT INTO estados(nome, sigla, regiao, populacao) 
+VALUES 
+    ("Alagoas", "AL", "Nordeste", 3.38),
+    ("Amapá", "AP", "Norte", 0.8),
+    ("Amazonas", "AM", "Norte", 4.06);
+```   
+
+```
+INSERT INTO cidades(nome, area, estado_id)
+VALUES ("CidadeAmazonas", 795, 4);
+```
+
+```
+INSERT INTO cidades(nome, area, estado_id)
+VALUES ("CidadeDoAcre", 150, 1);
+```
+
+```
+INSERT INTO prefeitos (nome, cidade_id)
+VALUES ("Guilherme", 2),
+("Dhaniela", 1),
+("Neusa", 3),
+("Antonio", null);
+``
+
+#### Consult Table
+
+Select all in table
+
+```
+select * from *tableName*;
+```
+
+Select Columns
+
+```
+select *column1*, *column2* from *tableName*;
+```
+
+Select columns with filter
+
+```
+select column1, username as *Guilherme* from *tableUser* where age = "18";
+```
+
+```
+select name, user from tableUser where age <= 10;
+```
  
