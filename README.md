@@ -4,17 +4,17 @@
 
 ### Commands to start mysql in terminal
 
-Start MySQL server
 
 ```
 service mysql start 
 ```
 
-Check if the server is connected
+Check if the server is connected:
 
 ```
 service mysql status
 ```
+<br>
 
 ### Login to MySQL
 
@@ -28,23 +28,29 @@ The root name is usually used for the user.
 
 After the login command, MySQL will ask for the password.
 
+<br>
+
 ### Create Database
 
 ```
 create database *nameDatabase*;
 ```
 
+<br>
+
 ### Show Databases
 
 ```
 show databases;
 ```
+<br>
 
 ### Use Database 
 
 ```
 use database *nameDatabase*;
 ```
+<br>
 
 ### Create Tables
 
@@ -95,6 +101,7 @@ create table users(
     UNIQUE KEY (email)
 );
 ```
+<br>
 
 ### Show Table
 
@@ -102,12 +109,14 @@ create table users(
 DESCRIBE *tableName*
 ```
 
+<br>
 
 ### Change Data
 
 ```
 UPDATE clientes SET numEmpregados=1999 WHERE idCliente = 1;
 ```
+<br>
 
 ### Select Table
 
@@ -122,6 +131,7 @@ Select Columns
 ```
 select column1, column2 from table-name;
 ```
+<br>
 
 ### SELECT Table with WHERE
 
@@ -138,8 +148,9 @@ SELECT name, lasname FROM table-name WHERE age <= 10;
 ```
 select column1, username as *Guilherme* from *tableUser* where age = "18";
 ```
+<br>
 
-### AND, OR anda NOT Operators
+### AND, OR and NOT Operators
 
 AND:
 
@@ -156,6 +167,7 @@ SELECT column1, column2 FROM table-name WHERE condicion1 OR condicion2 OR condic
 ```
 SELECT column1, column2 FROM table_name WHERE NOT condition;
 ```
+<br>
 
 ### ORDER BY Keyword
 
@@ -177,6 +189,8 @@ SELECT * FROM table-name ORDER BY column2 DESC;
 ```
 SELECT * FROM table-name ORDER BY column1 ASC, column2 DESC;
 ```
+
+<br>
 
 ### Insert Data
 
@@ -212,6 +226,7 @@ VALUES ("Guilherme", 2),
 ("Neusa", 3),
 ("Antonio", null);
 ```
+<br>
 
 ### Delete register table 
 
@@ -227,11 +242,15 @@ DELETE FROM clientes WHERE *nomeEmpresa* = 'Aliquam Inc.';
 DELETE FROM clientes WHERE idCliente = 2;
 ```
 
+<br>
+
 ### Delete Table
 
 ```
 DROP TABLE *tableName*
 ```
+
+<br>
 
 ### Clear the Table
 
