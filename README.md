@@ -1,8 +1,8 @@
-# DATABASES
+## DATABASES
 
-## MySQL 
+# MySQL 
 
-#### Commands to start mysql in terminal
+### Commands to start mysql in terminal
 
 Start MySQL server
 
@@ -16,7 +16,7 @@ Check if the server is connected
 service mysql status
 ```
 
-#### Login to MySQL
+### Login to MySQL
 
 With MySQL server connected, write:
 
@@ -28,25 +28,25 @@ The root name is usually used for the user.
 
 After the login command, MySQL will ask for the password.
 
-#### Create Database
+### Create Database
 
 ```
 create database *nameDatabase*;
 ```
 
-#### Show Databases
+### Show Databases
 
 ```
 show databases;
 ```
 
-#### Use Database 
+### Use Database 
 
 ```
 use database *nameDatabase*;
 ```
 
-#### Create Tables
+### Create Tables
 
 ```
 create table estados(
@@ -96,18 +96,96 @@ create table users(
 );
 ```
 
-#### Show Table
+### Show Table
 
 ```
 DESCRIBE *tableName*
 ```
 
-#### Insert Data
+
+### Change Data
 
 ```
-INSERT INTO estados(nome, sigla, regiao, populacao) 
-VALUES ("Acre", "AC", "Norte", 0.83);
+UPDATE clientes SET numEmpregados=1999 WHERE idCliente = 1;
 ```
+
+### Select Table
+
+Select all in table
+
+```
+select * from table-name;
+```
+
+Select Columns
+
+```
+select column1, column2 from table-name;
+```
+
+### SELECT Table with WHERE
+
+```
+SELECT column1, column2 FROM table-name WHERE condicion;
+```
+
+Example:
+
+```
+SELECT name, lasname FROM table-name WHERE age <= 10;
+```
+
+```
+select column1, username as *Guilherme* from *tableUser* where age = "18";
+```
+
+### AND, OR anda NOT Operators
+
+AND:
+
+```
+SELECT column1, column2 FROM table-name WHERE condicion1 AND condicion2 AND condicion3;
+```
+
+OR:
+
+```
+SELECT column1, column2 FROM table-name WHERE condicion1 OR condicion2 OR condicion3;
+```
+
+```
+SELECT column1, column2 FROM table_name WHERE NOT condition;
+```
+
+### ORDER BY Keyword
+
+The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
+
+```
+SELECT column1, column2 FROM table-name ORDER BY column1, column2 ASC|DESC;
+```
+
+```
+SELECT * FROM table-name ORDER BY column2;
+```
+
+```
+SELECT * FROM table-name ORDER BY column2 DESC;
+```
+
+```
+SELECT * FROM table-name ORDER BY column1 ASC, column2 DESC;
+```
+
+### Insert Data
+
+```
+INSERT INTO table-name(column1, column2, column3, column4) 
+VALUES (value1, value2, value3, value4);
+```
+
+Example:
 
 ```
 INSERT INTO estados(nome, sigla, regiao, populacao) 
@@ -135,36 +213,6 @@ VALUES ("Guilherme", 2),
 ("Antonio", null);
 ```
 
-#### Change Data
-
-```
-UPDATE clientes SET numEmpregados=1999 WHERE idCliente = 1;
-```
-
-#### Consult Table
-
-Select all in table
-
-```
-select * from *tableName*;
-```
-
-Select Columns
-
-```
-select *column1*, *column2* from *tableName*;
-```
-
-Select columns with filter
-
-```
-select column1, username as *Guilherme* from *tableUser* where age = "18";
-```
-
-```
-select name, user from tableUser where age <= 10;
-```
-
 ### Delete register table 
 
 ```
@@ -179,13 +227,13 @@ DELETE FROM clientes WHERE *nomeEmpresa* = 'Aliquam Inc.';
 DELETE FROM clientes WHERE idCliente = 2;
 ```
 
-#### Delete Table
+### Delete Table
 
 ```
 DROP TABLE *tableName*
 ```
 
-#### Clear the Table
+### Clear the Table
 
 Para limpar uma tabela, use o comando TRUNCATE. Internamente, ele remove a tabela primeiro e, depois, a recria com a mesma estrutura — só que sem os dados. Se houver um contador AUTO_INCREMENT, na tabela em questão, ele é zerado e recolocado.
 
