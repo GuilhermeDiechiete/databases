@@ -96,6 +96,12 @@ create table users(
 );
 ```
 
+#### Show Table
+
+```
+DESCRIBE *tableName*
+```
+
 #### Insert Data
 
 ```
@@ -129,6 +135,12 @@ VALUES ("Guilherme", 2),
 ("Antonio", null);
 ```
 
+#### Change Data
+
+```
+UPDATE clientes SET numEmpregados=1999 WHERE idCliente = 1;
+```
+
 #### Consult Table
 
 Select all in table
@@ -151,5 +163,33 @@ select column1, username as *Guilherme* from *tableUser* where age = "18";
 
 ```
 select name, user from tableUser where age <= 10;
+```
+
+### Delete register table 
+
+```
+DELETE FROM *nome-da-tabela* WHERE *nome-da-coluna*=texto;
+```
+
+```
+DELETE FROM clientes WHERE *nomeEmpresa* = 'Aliquam Inc.';
+```
+
+```
+DELETE FROM clientes WHERE idCliente = 2;
+```
+
+#### Delete Table
+
+```
+DROP TABLE *tableName*
+```
+
+#### Clear the Table
+
+Para limpar uma tabela, use o comando TRUNCATE. Internamente, ele remove a tabela primeiro e, depois, a recria com a mesma estrutura — só que sem os dados. Se houver um contador AUTO_INCREMENT, na tabela em questão, ele é zerado e recolocado.
+
+```
+TRUNCATE TABLE nome-da-tabela;
 ```
  
