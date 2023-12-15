@@ -2,8 +2,9 @@
 
 # MySQL 
 
-### Commands to start mysql in terminal
+### Start MySQL in Terminal
 
+With the terminal open, write:
 
 ```
 service mysql start 
@@ -30,67 +31,39 @@ After the login command, MySQL will ask for the password.
 
 <br>
 
-### Create Database
+
+### CREATE DATABASE
 
 ```
-create database *nameDatabase*;
+CREATE DATABASE users;
 ```
 
 <br>
 
-### Show Databases
+### SHOW DATABASES
+
+Check database creation:
 
 ```
 show databases;
 ```
+
 <br>
 
-### Use Database 
+### USE DATABASE 
+
+When using a database, we need to select it to avoid conflicts:
 
 ```
-use database *nameDatabase*;
+USE users;
 ```
+
 <br>
 
-### Create Tables
+### CREATE TABLES
 
 ```
-create table estados(
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(45) NOT NULL,
-    sigla VARCHAR(2) NOT NULL, 
-    regiao ENUM("Norte", "Nordeste", "Centro-Oeste", "Sudente", "Sul") NOT NULL,
-    populacao DECIMAL(5,2) NOT NULL, 
-    PRIMARY KEY (id),
-    UNIQUE KEY (nome),
-    UNIQUE KEY (sigla)
-);
-```
-
-```
-create table if not exists cidades(
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    estado_id INT UNSIGNED NOT NULL, 
-    area DECIMAL(10,2),
-    PRIMARY KEY (id),
-    FOREIGN KEY (estado_id) REFERENCES estados(id)
-);
-```
-
-```
-CREATE TABLE IF NOT EXISTS prefeitos(
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nome VARCHAR(255) NOT NULL,
-    cidade_id INT UNSIGNED,
-    PRIMARY KEY (id),
-    UNIQUE KEY (cidade_id),
-    FOREIGN KEY (cidade_id) REFERENCES cidades (id)
-);
-```
-
-```
-create table users(
+CREATE TABLE users(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
     lastname VARCHAR(45) NOT NULL, 
@@ -101,131 +74,273 @@ create table users(
     UNIQUE KEY (email)
 );
 ```
+
+```
+CREATE TABLE IF NOT EXISTS expenses(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    area DECIMAL(10,2),
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+```
+
+```
+CREATE TABLE IF NOT EXISTS categories(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY (name),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+```
+
+```
+CREATE TABLE products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    value DECIMAL(10, 2) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+
 <br>
 
-### Show Table
+### SHOW TABLES
+
+Shows the tables in the database:
 
 ```
-DESCRIBE *tableName*
+SHOW tables;
+```
+
+### DESCRIBE TABLE
+
+Describes table settings:
+
+```
+DESCRIBE users;
 ```
 
 <br>
 
-### Change Data
-
-```
-UPDATE clientes SET numEmpregados=1999 WHERE idCliente = 1;
-```
-<br>
-
-### Select Table
+### SELECT TABLE
 
 Select all in table
 
 ```
-select * from table-name;
+SELECT * FROM users;
 ```
 
 Select Columns
 
 ```
-select column1, column2 from table-name;
+SELECT name, email FROM users;
 ```
 <br>
 
-### SELECT Table with WHERE
+### SELECT TABLE with WHERE
+
+We can use conditions to filter
 
 ```
-SELECT column1, column2 FROM table-name WHERE condicion;
-```
-
-Example:
-
-```
-SELECT name, lasname FROM table-name WHERE age <= 10;
+SELECT name, email FROM users WHERE age > 10;
 ```
 
 ```
-select column1, username as *Guilherme* from *tableUser* where age = "18";
+SELECT name, email FROM users WHERE name = 'Guilherme';
 ```
+
+We can use WHERE with ORDER BY:
+
+```
+SELECT name, email FROM users WHERE age = 28 ORDER BY name;
+```
+
 <br>
 
-### AND, OR and NOT Operators
+### SELECT with operators AND, OR and NOT 
 
-AND:
-
-```
-SELECT column1, column2 FROM table-name WHERE condicion1 AND condicion2 AND condicion3;
-```
-
-OR:
+AND: All conditions must be true.
 
 ```
-SELECT column1, column2 FROM table-name WHERE condicion1 OR condicion2 OR condicion3;
+SELECT name, email FROM users WHERE age > 10 AND name = 'Dhaniela' AND password = '123456';
 ```
 
+OR: Only one of the conditions needs to be true.
+
 ```
-SELECT column1, column2 FROM table_name WHERE NOT condition;
+SELECT name, email FROM users WHERE age > 20 OR name = 'Guilherme';
+```
+
+NOT: It will not select entities if the condition is true.
+```
+SELECT name, email FROM users WHERE NOT name = 'Guilherme';
 ```
 <br>
 
 ### ORDER BY Keyword
 
 The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+
 The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
 
 ```
-SELECT column1, column2 FROM table-name ORDER BY column1, column2 ASC|DESC;
+SELECT id, name, email FROM users ORDER BY name;
 ```
 
 ```
-SELECT * FROM table-name ORDER BY column2;
+SELECT * FROM users ORDER BY age DESC;
 ```
 
 ```
-SELECT * FROM table-name ORDER BY column2 DESC;
-```
-
-```
-SELECT * FROM table-name ORDER BY column1 ASC, column2 DESC;
+SELECT * FROM users ORDER BY age ASC;
 ```
 
 <br>
 
-### Insert Data
+### SELECT with OPERATOR IN
+
+The IN operator is the same as OR, just more practical:
 
 ```
-INSERT INTO table-name(column1, column2, column3, column4) 
-VALUES (value1, value2, value3, value4);
+SELECT * FROM users WHERE age IN (24,28,40);
 ```
 
-Example:
+### SELECT with OPERATOR BETWEEN
+
+We can define the selection with a minimum and maximum value:
 
 ```
-INSERT INTO estados(nome, sigla, regiao, populacao) 
-VALUES 
-    ("Alagoas", "AL", "Nordeste", 3.38),
-    ("Amapá", "AP", "Norte", 0.8),
-    ("Amazonas", "AM", "Norte", 4.06);
+SELECT * FROM users
+WHERE age BETWEEN 25 AND 35;
+```
+<br>
+
+### SELECT with OPERATOR LIKE
+
+We can select a data by initial or combinations: 
+
+```
+SELECT * FROM users WHERE name LIKE 'G%';
+```
+
+```
+SELECT * FROM users WHERE name LIKE 'GU%';
+```
+<br>
+
+We can also select to search for data at the end or make combinations:
+
+```
+SELECT * FROM users WHERE name LIKE '%a';
+```
+
+```
+SELECT * FROM users WHERE name LIKE '%LA';
+```
+<br>
+
+### SELECT with OPERATOR IS NULL
+
+We can search for empty fields, with no value:
+
+```
+SELECT * FROM products WHERE description IS NULL;
+```
+<br>
+
+### SELECT with OPERATOR LIMIT
+
+We can search for records defining where we want to start from:
+
+```
+SELECT * FROM products LIMIT 2, 10;
+```
+
+<br>
+
+### SELECT with OPERATOR REGEXP
+
+Select data that contains the letter:
+
+```
+SELECT * FROM users WHERE name REGEXP 'a';
+```
+
+```
+SELECT * FROM users WHERE name REGEXP 'v|g';
+```
+
+<br>
+
+Select data with start:
+
+```
+SELECT * FROM users WHERE name REGEXP '^a';
+```
+
+```
+SELECT * FROM users WHERE name REGEXP '^g|^d';
+```
+<br>
+
+Select data that starts with letter and contains letter:
+
+```
+SELECT * FROM users WHERE name REGEXP '^g|e';
+```
+
+
+
+<br>
+
+### INSERT DATA
+
+```
+INSERT INTO users(name, lastname, email, age, password) 
+VALUES ('Guilherme', 'Diechiete', 'teste@gmail.com', 24, '123456');
 ```   
 
 ```
-INSERT INTO cidades(nome, area, estado_id)
-VALUES ("CidadeAmazonas", 795, 4);
-```
+INSERT INTO users(name, lastname, email, age, password) 
+VALUES ('Dhaniela', 'Souza', 'teste1@gmail.com', 29, '123456');
+```  
+
+<br>
+
+Add several data in the same INSERT.
 
 ```
-INSERT INTO cidades(nome, area, estado_id)
-VALUES ("CidadeDoAcre", 150, 1);
-```
+INSERT INTO users(name, lastname, email, age, password)
+VALUES
+  ('Alice', 'Johnson', 'alice.j@email.com', 28, 'pass123'),
+  ('Bob', 'Smith', 'bob.smith@email.com', 35, 'pass456'),
+  ('Charlie', 'Doe', 'charlie.d@email.com', 22, 'pass789'),
+  ('David', 'Miller', 'david.m@email.com', 40, 'passabc'),
+  ('Eva', 'Williams', 'eva.w@email.com', 31, 'passxyz'),
+  ('Frank', 'Taylor', 'frank.t@email.com', 27, 'pass456'),
+  ('Grace', 'Moore', 'grace.m@email.com', 33, 'pass123'),
+  ('Henry', 'Brown', 'henry.b@email.com', 29, 'pass789'),
+  ('Isabel', 'White', 'isabel.w@email.com', 38, 'passxyz'),
+  ('Jack', 'Anderson', 'jack.a@email.com', 26, 'passabc');
+``` 
+<br>
+
+### CHANGE DATA
+
+We can perform operations on the data and show it in a new column:
 
 ```
-INSERT INTO prefeitos (nome, cidade_id)
-VALUES ("Guilherme", 2),
-("Dhaniela", 1),
-("Neusa", 3),
-("Antonio", null);
+SELECT name, email, password, (password + 505050) AS passwordhash
+FROM users 
+WHERE id = 1;
 ```
+
 <br>
 
 ### Delete register table 
